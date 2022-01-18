@@ -22,7 +22,6 @@ public class User implements Serializable{
 	}
 
 	public User(Long id, String email) {
-		super();
 		this.id = id;
 		this.email = email;
 	}
