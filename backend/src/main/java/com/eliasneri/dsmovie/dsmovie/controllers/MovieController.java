@@ -8,13 +8,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.eliasneri.dsmovie.dsmovie.dto.MovieDTO;
 import com.eliasneri.dsmovie.dsmovie.services.MovieService;
 
 @Controller
-@RequestMapping(value = "/movie")
+@RequestMapping(value = "/movies")
 public class MovieController implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -26,6 +27,13 @@ public class MovieController implements Serializable{
 		Page<MovieDTO> result = service.findAll(pageable);
 		return ResponseEntity.ok().body(result);
 	}
+	
+	@GetMapping(value="/{id}")
+	public ResponseEntity<MovieDTO> findById(@PathVariable Long id){
+		MovieDTO result = service.findById(id);
+		return ResponseEntity.ok(result);
+	}
+	
 	
 	
 	
